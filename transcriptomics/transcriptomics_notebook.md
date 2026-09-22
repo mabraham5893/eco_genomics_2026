@@ -40,11 +40,12 @@ print("Hello World")
 
 ### Programs/dependencies
 
-`R version 4.5.1` `RStudio`
+`R version 4.5.1`
+`RStudio`
 
 ### Graphs/images
 
-![](images/ducklings.jpg)
+![](/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/images/ducklings.jpg)
 
 ### Tables
 
