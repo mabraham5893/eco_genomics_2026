@@ -1,3 +1,6 @@
+
+
+# Working directory on the VACC
 setwd("~/projects/eco_genomics_2026/transcriptomics")
 
 library(DESeq2)
