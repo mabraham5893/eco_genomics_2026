@@ -1,3 +1,39 @@
+# Transcriptomics notebook
+
+**Course:** Intro to Ecological Genomics - Fall 2026
+
+**Name:** Meron Abraham
+
+**Date:** 10/8/2026
+
+------------------------------------------------------------------------
+
+## Starting Homework 1
+
+-   Data analysis and visualization
+    -   Extracted F0 and F4 data from DESeq
+    -   Ran PCAs and created PCA plots
+-   Working with Lisa!
+
+### Working directory
+
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026`
+
+### Input files
+
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/mydata/ahud_samples_R.txt` `/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/mydata/salmon.isoform.counts.matrix.filteredAssembley`
+
+### Output files
+
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/transcriptomics_notebook_hw_10_8.md`
+
+### Scripts
+
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/Homework_1.r`
+
+### Code
+
+``` r
 #### Homework 1: Changes in Gene Expression Between F0 and F4 ####
 setwd("~/projects/eco_genomics_2026/transcriptomics/mydata")
 
@@ -110,5 +146,47 @@ ggplot(pcaData, aes(PC1, PC2, color=treatment, shape=generation)) +
   ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
   coord_fixed()
 
+### Euler plot ###
+# Comparing DEGs between generations of each treatment
 
+### Volcano plot ###
+# Upregulated and downregulated genes for F4 vs. F0 of each treatment
+```
 
+### Programs/dependencies
+
+`R version 4.5.1` `RStudio`
+
+### Graphs/images
+
+Scatterplot of F0 DEGs per treatment
+
+![](images/F0_deg_scatterplot-01.png)
+
+Scatterplot of F4 DEGs per treatment
+
+![](images/F4_deg_scatterplot.png)
+
+PCA of all treatments and all generations (need to fix so it's just F0 and F4!)
+
+![](images/pca_all_gens.png)
+
+### Tables
+
+| Col1 | Col2 | Col3 | Col4 | Col5 |
+|------|------|------|------|------|
+|      |      |      |      |      |
+|      |      |      |      |      |
+|      |      |      |      |      |
+
+#### Notes/observations
+
+-   Scatterplot shows very different patterns in PCA from F0 to F4; only OWA has noticeably higher DEGs than the other treatments
+
+-   No clear grouping in PCA, components don't account for much variance each
+
+### Next steps
+
+-   Euler plot, volcano plot
+
+-   Fix the PCA plot to only show F0 and F4
