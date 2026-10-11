@@ -10,7 +10,7 @@
 
 ## Starting Homework 1
 
--   Data analysis and visualization
+-   Data analysis and visualization 
     -   Extracted F0 and F4 data from DESeq
     -   Ran PCAs and created PCA plots
 -   Working with Lisa!

@@ -8,7 +8,7 @@
 
 ------------------------------------------------------------------------
 
-## Continuing HW1 script
+## Continuing HW1 script 
 
 -   Creating Euler plot for DEGs (F4 vs. F0) of each treatment group
 
