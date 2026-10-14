@@ -1,4 +1,4 @@
-#### Homework 1: Changes in Gene Expression Between F0 and F4 ####
+#### Homework 1: Changes in Gene Expression Between F0 and F4 ----
 setwd("~/projects/eco_genomics_2026/transcriptomics/mydata")
 
 library(DESeq2)
@@ -10,7 +10,7 @@ library(ggpubr)
 library(vsn)  
 library(patchwork)
 
-
+### DESeq model ----
 #Import counts matrix 
 countsTable <- read.table("salmon.isoform.counts.matrix.filteredAssembly", header=TRUE, row.names=1)
 
@@ -28,6 +28,7 @@ dim(dds)
 
 #filter so that there are at least 15 counts per gene in 75% of samples
 dds <- dds[rowSums(counts(dds) >= 15) >= 28,]
+
 
 dim(dds)
 ## Subset the DESeqDataSet to FO
@@ -91,15 +92,15 @@ p <- p + stat_summary(fun = mean, geom = "point", size=5, alpha=0.7)
 p
 #plot individual genes to see if the statistics are behaving as we expect for F4
 j <-plotCounts(dds_F4, gene="TRINITY_DN30_c0_g2::TRINITY_DN30_c0_g2_i1::g.130::m.130", intgroup = (c("treatment")), returnData=TRUE)
-j
+#j
 k <-ggplot(j, aes(x=treatment, y=count, color=treatment)) + 
   theme_minimal() + theme(text = element_text(size=20), panel.grid.major=element_line(colour="grey"))
 k <- k + geom_point(position=position_jitter(w=0.2,h=0), size=3)
 k <- k + stat_summary(fun = mean, geom = "line")
 k <- k + stat_summary(fun = mean, geom = "point", size=5, alpha=0.7) 
-k
+#k
 
-###PCAplot###
+### PCA and plot ----
 #transform the data for plotting using variance stabilization
 vsd <- vst(dds, blind=FALSE)
 
@@ -107,15 +108,17 @@ pcaData <- plotPCA(vsd, intgroup = c("treatment", "generation"), returnData = TR
   filter(generation %in% c("F0", "F4"))
 percentVar <- round(100 * attr(pcaData,"percentVar"))
 
-PCAplot <- ggplot(pcaData, aes(PC1, PC2, color=treatment, shape=generation)) +
+PCAplot <- ggplot(pcaData, aes(PC1, PC2, color=generation, shape=treatment)) +
   geom_point(size=3) +
+  scale_shape_manual(values = c(15,16,17,18)) +
+  scale_color_manual(values = c("orange2", "darkorchid2")) +
   xlab(paste0("PC1: ",percentVar[1],"% variance")) +
   ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
   coord_fixed()
 
 PCAplot
 
-### Euler plot ###
+### Euler plot ----
 # Comparing DEGs between generations of each treatment
 
 # For OW vs AM
@@ -259,7 +262,7 @@ F4_euler <- plot(
 F0_euler
 F4_euler
 
-### Volcano plot ###
+### Volcano plot ----
 # Upregulated and downregulated genes for F4 vs. F0 of each treatment
 
 #OW F0
@@ -285,9 +288,9 @@ F0_OW_Volcano <- ggplot(volcano_df,
            color = sig)) +
   geom_point(alpha = 0.6, size = 1.5) +
   scale_color_manual(values = c(
-    "Down" = "turquoise4",
+    "Down" = "brown",
     "NS"   = "grey70",
-    "Up"   = "orangered"
+    "Up"   = "gold"
   )) +
   geom_vline(xintercept = c(-1, 1),
              linetype = "dashed") +
@@ -322,9 +325,9 @@ F0_OA_Volcano <- ggplot(volcano_df,
            color = sig)) +
   geom_point(alpha = 0.6, size = 1.5) +
   scale_color_manual(values = c(
-    "Down" = "turquoise4",
+    "Down" = "brown",
     "NS"   = "grey70",
-    "Up"   = "orangered"
+    "Up"   = "gold"
   )) +
   geom_vline(xintercept = c(-1, 1),
              linetype = "dashed") +
@@ -361,9 +364,9 @@ F0_OWA_Volcano <- ggplot(volcano_df,
            color = sig)) +
   geom_point(alpha = 0.6, size = 1.5) +
   scale_color_manual(values = c(
-    "Down" = "turquoise4",
+    "Down" = "brown",
     "NS"   = "grey70",
-    "Up"   = "orangered"
+    "Up"   = "gold"
   )) +
   geom_vline(xintercept = c(-1, 1),
              linetype = "dashed") +
@@ -400,7 +403,7 @@ F4_OW_Volcano <- ggplot(volcano_df,
            color = sig)) +
   geom_point(alpha = 0.6, size = 1.5) +
   scale_color_manual(values = c(
-    "Down" = "palegreen4",
+    "Down" = "blue4",
     "NS"   = "grey70",
     "Up"   = "magenta"
   )) +
@@ -439,7 +442,7 @@ F4_OA_Volcano <- ggplot(volcano_df,
            color = sig)) +
   geom_point(alpha = 0.6, size = 1.5) +
   scale_color_manual(values = c(
-    "Down" = "palegreen4",
+    "Down" = "blue4",
     "NS"   = "grey70",
     "Up"   = "magenta"
   )) +
@@ -478,7 +481,7 @@ F4_OWA_Volcano <- ggplot(volcano_df,
            color = sig)) +
   geom_point(alpha = 0.6, size = 1.5) +
   scale_color_manual(values = c(
-    "Down" = "palegreen4",
+    "Down" = "blue4",
     "NS"   = "grey70",
     "Up"   = "magenta"
   )) +
@@ -493,40 +496,62 @@ F4_OWA_Volcano <- ggplot(volcano_df,
     color = NULL
   )
 
-F0_OW_Volcano
-F0_OA_Volcano
-F0_OWA_Volcano
+#F0_OW_Volcano
+#F0_OA_Volcano
+#F0_OWA_Volcano
 
-F4_OW_Volcano
-F4_OA_Volcano
-F4_OWA_Volcano
+#F4_OW_Volcano
+#F4_OA_Volcano
+#F4_OWA_Volcano
 
+#combined_volcano
 
 #Combine using patchwork
 combined_volcano <-(F0_OW_Volcano | F4_OW_Volcano) /
   (F0_OA_Volcano | F4_OA_Volcano) /
   (F0_OWA_Volcano | F4_OWA_Volcano) +
   plot_annotation(
-    title = "Differential Gene Expression",
-    subtitle = "F0 vs. F4"
+    tag_levels = 'A') +
+  plot_layout(
+    guides = "collect",
+    axis_titles = "collect"
   ) &
   theme(
-    axis.title.x = element_text(size = 11),
-    axis.title.y = element_text(size = 11)
+    plot.tag = element_text(size = 15),
+    legend.position = "right"
+  )
+
+#combined_volcano
+
+combined_volcano <-(F0_OW_Volcano | F4_OW_Volcano)/(F0_OA_Volcano | F4_OA_Volcano) +
+  plot_annotation(
+    tag_levels = 'A') +
+  plot_layout(
+    guides = "collect",
+    axis_titles = "collect",
+    axes = "collect",
+    ncol = 2,
+    nrow = 3
+  ) &
+  theme(
+    plot.tag = element_text(size = 15),
+    legend.position = "right"
+  )
+combined_volcano <-(F0_OW_Volcano + F4_OW_Volcano+F0_OA_Volcano + F4_OA_Volcano+F0_OWA_Volcano + F4_OWA_Volcano) +
+  plot_annotation(
+    tag_levels = 'A') +
+  plot_layout(
+    guides = "collect",
+    axis_titles = "collect",
+    axes = "collect",
+    ncol = 2,
+    nrow = 3
+  ) &
+  theme(
+    plot.tag = element_text(size = 15),
+    legend.position = "right"
   )
 
 combined_volcano
 
-#Combine volcano plots into one plot
-combined_volcano <- ggarrange(
-  F0_OW_Volcano, F4_OW_Volcano,
-  F0_OA_Volcano, F4_OA_Volcano,
-  F0_OWA_Volcano, F4_OWA_Volcano,
-  ncol = 2,
-  nrow = 3,
-  align = "hv",
-  common.legend = FALSE
-) 
-
-combined_volcano
-
+#ggsave(combined_volcano,file="combinedvolcano.png",width = 8, height = 10)
