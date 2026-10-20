@@ -4,18 +4,19 @@
 
 **Name:** Meron Abraham
 
-**Date:** 10/13/2026
+**Date:** 10/20/2026
 
 ------------------------------------------------------------------------
 
-## Starting Pop. Genomics
+## Population Structure
 
 
--   Starting Pop. Genomics
+-  Copying admixture and PCA data
+- Creating variables for directory, data file
 
 ### Working directory
 
-`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026`
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/population_genomics`
 
 ### Input files
 
@@ -31,13 +32,13 @@
 
 ### Code
 
-``` r
-library(tidyverse)
-
-print("Hello World")
-```
+`
+data_dir=/users/m/a/mabraha3/projects/eco_genomics_2026/population_genomics/mydata
+VCF=Lottia_gigantea_flt3_sub0.01.vcf.gz
+`
 
 ### Programs/dependencies
+
 
 `R version 4.5.1`
 `RStudio`

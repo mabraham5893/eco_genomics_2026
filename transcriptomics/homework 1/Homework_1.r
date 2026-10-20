@@ -42,7 +42,7 @@ dds_F0 <- DESeq(dds_F0)
 #Check DESeq2 results for F0
 resultsNames(dds_F0)
  
-#Name FO OWA vs AM result
+Name FO OWA vs AM result
 F0_res_OWAvsAM <- results(dds_F0, name="treatment_OWA_vs_AM", alpha=0.05)
 #9.3% are up-regulated and 6.2% are down-regulated
 
