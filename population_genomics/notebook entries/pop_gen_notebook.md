@@ -4,15 +4,14 @@
 
 **Name:** Meron Abraham
 
-**Date:** 10/20/2026
+**Date:** 11/3/2026
 
 ------------------------------------------------------------------------
 
-## Population Structure
+## Gene Ontology
 
-
--  Copying admixture and PCA data
-- Creating variables for directory, data file
+-   Copying admixture and PCA data
+-   Creating variables for directory, data file
 
 ### Working directory
 
@@ -24,28 +23,29 @@
 
 ### Output files
 
-`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/transcriptomics_notebook.md`
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/population_genomics/notebook entries/pop_gen_notebook_11_3.md`
 
 ### Scripts
 
-`none`
+`/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/population_genomics/my scripts/gene_ontology.R`
 
 ### Code
 
-`
-data_dir=/users/m/a/mabraha3/projects/eco_genomics_2026/population_genomics/mydata
-VCF=Lottia_gigantea_flt3_sub0.01.vcf.gz
-`
+`data_dir=/users/m/a/mabraha3/projects/eco_genomics_2026/population_genomics/mydata VCF=Lottia_gigantea_flt3_sub0.01.vcf.gz`
 
 ### Programs/dependencies
 
-
-`R version 4.5.1`
-`RStudio`
+`R version 4.5.1` `RStudio`
 
 ### Graphs/images
 
-![](/gpfs1/home/m/a/mabraha3/projects/eco_genomics_2026/transcriptomics/images/ducklings.jpg)
+Biological processes - GO term association
+
+![](images/topGO_BP.png)
+
+Annotated genes count for each parameter
+
+![](images/annocount.png)
 
 ### Tables
 
